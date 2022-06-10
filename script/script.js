@@ -115,6 +115,7 @@ const mediaQuery = window.matchMedia("(max-width: 576px)");
 
 let move;
 let widthCurrent;
+
 function adjustWidth() {
     allItems.forEach(function (item) {
         item.style.width = `${sliderTrack.clientWidth / slidesToShow}px`;
