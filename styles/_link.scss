@@ -1,0 +1,16 @@
+.link {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 28px;
+    color: $titles;
+    text-decoration: none;
+
+    &_theme_dark {
+        color: $titles_theme_dark;
+    }
+
+    @include media("max", "xs") {
+        font-size: 14px;
+        line-height: 20px;
+     }
+}

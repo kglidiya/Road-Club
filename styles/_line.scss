@@ -1,0 +1,13 @@
+.line {
+    display: none;
+
+    @include media("max", "xs") {
+        display: block;
+        margin-left: 18px;
+        margin-right: 18px;
+        text-align: center;
+        border-bottom: 1px solid #E3E3E3;
+    }
+
+
+}

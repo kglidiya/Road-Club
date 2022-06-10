@@ -1,0 +1,82 @@
+.popup {
+ height: 0;
+ opacity: 0;
+ transition: all 2s ease;
+ display: none;
+  
+    @include media("max", "xs") {
+        height: 0;
+        opacity: 0;
+        transition: all 2s ease;
+        display: none;
+
+        &_opened {
+            height: 100vh;
+            opacity: 1;
+            transition: all 2s ease;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: $background;
+
+            &_theme_dark {
+                background: $background_dark;
+            }
+
+        }
+    
+      
+        
+    }
+
+    &__button {
+        padding: 0;
+        width: 23px;
+        height: 23px;
+        border: none;
+        background: transparent;
+        float: right;
+        position: absolute;
+        top: 0;
+        right: 18px;
+    
+
+        &_theme_dark {
+            color: white;
+        }
+
+
+    }
+
+    &__links {
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        justify-content: center;
+        margin-top: 140px;
+        margin-bottom: 318px;
+
+     
+
+        &_item {
+            font-size: 18px;
+            line-height: 18px;
+            font-weight: 500;
+            color: $titles;
+            text-decoration: none;
+
+            &_theme_dark {
+                color: $text_them_dark;
+            }
+        }
+    }
+
+    &__link {
+        margin-bottom: 32px;
+    }
+}

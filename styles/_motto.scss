@@ -1,0 +1,94 @@
+.motto {
+  padding: 120px 120px 60px 120px;
+  display: flex;
+  flex-direction: row;
+  box-sizing: content-box;
+  gap: 80px;
+
+
+  @include media("max", "lg") {
+    flex-direction: column;
+    padding: 50px 40px 50px 40px;
+  }
+
+  @include media("max", "sm") {
+    padding: 50px 40px 50px 40px;
+
+  }
+
+
+  @include media("max", "xs") {
+    flex-direction: column;
+    padding: 20px 18px 80px 18px;
+    gap: 42px;
+
+
+  }
+
+  &__image {
+    width: 54.1%;
+    height: auto;
+
+    @include media("max", "lg") {
+      width: 95%;
+      height: auto;
+
+    }
+
+    @include media("max", "xs") {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    letter-spacing: -0.5px;
+
+
+    @include media("max", "xs") {
+      font-size: 10px;
+      line-height: 16px;
+
+    }
+
+    &_quote {
+      font-weight: 600;
+      font-size: 34px;
+      line-height: 44px;
+      color: $titles;
+      margin-top: 0;
+      padding-top: 0;
+
+      @include media("max", "xs") {
+        font-size: 23px;
+        line-height: 29px;
+        margin-bottom: 0;
+      }
+    }
+
+    &_author {
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 32px;
+      color: $titles;
+      margin-top: 226px;
+      margin-bottom: 2px;
+
+      @include media("max", "lg") {
+
+        margin-top: 60px;
+
+      }
+
+      @include media("max", "xs") {
+        font-size: 14px;
+        line-height: 22px;
+        margin-top: 40px;
+
+      }
+
+    }
+  }
+}

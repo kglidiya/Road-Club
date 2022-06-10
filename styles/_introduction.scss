@@ -1,0 +1,302 @@
+     .introduction {
+         max-width: 1440px;
+         height: 836px;
+         display: flex;
+         flex-direction: row;
+         padding-top: 20px;
+         padding-right: 0;
+         padding-left: 120px;
+         justify-content: space-between;
+         box-sizing: content-box;
+         position: relative;
+
+         @include media("max", "lg") {
+             box-sizing: content-box;
+             height: auto;
+
+         }
+
+         @include media("max", "lg") {
+             padding: 50px 40px 50px 40px;
+         }
+
+         @include media("max", "sm") {
+             padding: 50px 40px 50px 40px;
+
+         }
+
+         @include media("max", "xs") {
+             flex-direction: column-reverse;
+             padding: 40px 18px 0 18px;
+             column-gap: 40px;
+             height: 100%;
+
+         }
+
+         &__content-container {
+             display: flex;
+             flex-direction: column;
+             max-width: 460px;
+             padding-top: 62px;
+
+             @include media("max", "lg") {
+                 max-width: 350px;
+             }
+
+             @include media("max", "xs") {
+                 padding-top: 0;
+
+             }
+         }
+
+         &__button {
+             width: 180px;
+             height: 50px;
+             background: #24B47E;
+             color: white;
+             font-size: 14px;
+             line-height: 18px;
+             letter-spacing: 1px;
+             border: none;
+             border-radius: 4px;
+             margin-top: 52px;
+             margin-bottom: 168px;
+             font-weight: 400;
+    
+
+
+             @include media("max", "xs") {
+                 width: 100%;
+                 margin-bottom: 78px;
+                 margin-top: 40px;
+                 height: 48px;
+             }
+
+          
+             &_animation {
+                 animation: changeColor .5s linear;
+             }
+
+         }
+
+
+         &__link-container {
+             display: flex;
+             flex-direction: row;
+             gap: 30px;
+
+             @include media("max", "xs") {
+                 border-bottom: 1px solid #E3E3E3;
+                 width: 100%;
+             }
+
+         }
+
+         &__link {
+             text-decoration: none;
+             color: $titles;
+             font-weight: 400;
+             font-size: 18px;
+             line-height: 18px;
+             margin-bottom: 30px;
+
+             @include media("max", "xs") {
+                 display: none;
+             }
+
+             &_theme_dark {
+                 color: $titles_theme_dark;
+             }
+
+         }
+
+         &__link::after {
+             content: '';
+             background: url(../images/line.svg);
+             display: inline-block;
+             height: 2px;
+             width: 132px;
+             margin-bottom: 4px;
+             margin-left: 30px;
+         }
+
+
+         &__image {
+            width: 100%;
+            height: auto;
+            box-shadow: -20px 60px 220px 0 #C4C4C4;
+
+
+
+            &_theme_dark {
+               box-shadow: 0 0 0 0 #C4C4C4;
+
+               
+           }
+
+        
+        }
+        
+         &__image-container {
+             width: 46.2%;
+             display: flex;
+             align-items: center;
+
+             @include media("max", "md") {
+                 display: none;
+             }
+
+             @include media("max", "xs") {
+                 height: 254px;
+                 width: 100%;
+             }
+     
+         }
+        
+
+
+         &__image-container_mobile {
+             display: flex;
+             align-items: center;
+             margin-left: 30px;
+             padding-bottom: 40px;
+
+             @include media("max", "md") {
+                width: 120%;
+                height: auto;
+            }
+
+             @include media("min", "md") {
+                 display: none;
+             }
+
+             @include media("max", "xs") {
+                width: 254px;
+             height: 348px;
+             
+
+            }
+
+           
+
+         }
+
+        
+
+         &__sticky-container {
+             height: 430px;
+             position: absolute;
+             right: 375px;
+             bottom: 40px;
+
+
+
+
+             @include media("max", "md") {
+                 display: none;
+             }
+
+             @include media("max", "xl") {
+                 left: 350px;
+                 bottom: 79px;
+
+             }
+
+             @include media("max", "xs") {
+                 left: 18px;
+                 top: 0;
+             }
+
+
+
+         }
+
+         &__sticky-container_mobile {
+             width: 90%;
+             position: absolute;
+             left: 3px;
+             bottom: 330px;
+
+             @include media("min", "md") {
+                 display: none;
+
+             }
+
+             @include media("max", "md") {
+                left: 20px;
+                bottom: 700px;
+                height: 300px;
+            }
+
+            @include media("max", "xs") {
+                left: 3px;
+                bottom: 330px;
+                height: 150px;
+
+            }
+
+         }
+
+         &__bike-container {
+             position: sticky;
+             background: #F4F4F4;
+             width: 440px;
+             height: 300px;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             border-radius: 20px;
+             top: 0;
+
+
+             @include media("max", "xl") {
+                 width: 380px;
+                 height: auto;
+             }
+
+             @include media("max", "xs") {
+                 width: 28%;
+                 height: auto;
+             }
+
+         }
+
+         &__bike-container_mobile {
+             position: sticky;
+             background: #F4F4F4;
+             width: 234px;
+             height: 160px;
+             display: flex;
+             align-items: center;
+             justify-content: center;
+             border-radius: 20px;
+             top: 0;
+             margin-left: 18px;
+
+             @include media("min", "md") {
+                 display: none;
+             }
+
+           
+
+         }
+
+         &__sticky-bike {
+             height: 260px;
+             width: 340px;
+             border-radius: 20px;
+
+             @include media("max", "xl") {
+                 width: 280px;
+                 height: auto;
+             }
+
+           
+
+             @include media("max", "xs") {
+                 height: 138px;
+                 width: 180px;
+             }
+
+         }
+     }

@@ -1,0 +1,17 @@
+@keyframes changeColor {
+    0% {
+        background: linear-gradient(to right, #24B47E 0%, #319E75 0%);
+    }
+    25% {
+        background: linear-gradient(to right, #24B47E 25%, #319E75 25%);
+    }
+    50% {
+        background: linear-gradient(to right, #24B47E 50%, #319E75 50%);
+    }
+    75% {
+        background: linear-gradient(to right, #24B47E 75%, #319E75 75%);
+    }
+    100% {
+        background: linear-gradient(to right, #24B47E 100%, #319E75 100%);
+    }
+}

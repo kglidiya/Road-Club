@@ -1,0 +1,28 @@
+.text {
+    color: $text;
+    max-width: 460px;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    margin: 0;
+
+
+    @include media("max", "xl") {
+        font-size: 16px;
+        line-height: 26px;
+
+    }
+
+  
+
+    @include media("max", "xs") {
+        font-size: 12px;
+        line-height: 18px;
+        max-width: 284px;
+    }
+
+    &_theme_dark {
+        color: $text_them_dark;
+        opacity: 0.65;
+    }
+}
