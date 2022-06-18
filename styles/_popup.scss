@@ -61,18 +61,18 @@
         margin-top: 140px;
         margin-bottom: 318px;
 
-     
+      
+    }
 
-        &_item {
-            font-size: 18px;
-            line-height: 18px;
-            font-weight: 500;
-            color: $titles;
-            text-decoration: none;
+    &__links-item {
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: 500;
+        color: $titles;
+        text-decoration: none;
 
-            &_theme_dark {
-                color: $text_them_dark;
-            }
+        &_theme_dark {
+            color: $text_them_dark;
         }
     }
 

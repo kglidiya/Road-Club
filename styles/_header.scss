@@ -15,14 +15,15 @@
     @include media("max", "xs") {
       display: block;
       width: 22px;
-      height: 22px;
+      height: 20px;
       background: url(../images/line-popup.svg) no-repeat center;
       border-bottom: 3px solid black;
       border-top: 3px solid black;
       border-left: none;
       border-right: none;
-      margin-top: 28px;
+      margin-top: 26px;
       margin-right: 0;
+     
 
       &_theme_dark {
         filter: invert(100%);
@@ -52,23 +53,25 @@
     }
 
 
-      &_item {
-          text-decoration: none;
-          color: $titles;
-          font-size: 14px;
-          line-height: 18px;
-          font-weight: 500;
-
-          &_theme_dark {
-            color: $titles_theme_dark;
-          }
-      }
-
-
-      &_item:hover {
-        opacity: 0.75;
-        transition: opacity 1s ease;
-      }
+ 
     }
+
+    &__links-item {
+      text-decoration: none;
+      color: $titles;
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 500;
+
+      &_theme_dark {
+        color: $titles_theme_dark;
+      }
+  }
+
+
+  &__links-item:hover {
+    opacity: 0.75;
+    transition: opacity 1s ease;
+  }
 
 }

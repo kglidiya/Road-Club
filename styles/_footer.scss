@@ -69,13 +69,14 @@
         padding-left: 20px;
         color: $titles;
 
-        @include media("max", "xs") {
+        @include media("max", "sm") {
             width: 95%;
             margin-top: 40px;
       }
 
         &_theme_dark {
             background: $background_dark;
+            color: $text_them_dark;
         }
 
 

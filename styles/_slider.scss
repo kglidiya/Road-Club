@@ -113,6 +113,7 @@
         border-radius: 50%;
         border: none;
         margin-right: 20px;
+        cursor: pointer;
 
         @include media("max", "xs") {
         display: none;
@@ -130,6 +131,7 @@
             right: 50px;
             gap: 10px;
             background: url(../images/i-mobile-back.svg) no-repeat center, #EBEBEB;
+            cursor: pointer;
 
             @include media("min", "xs") {
                 display: none;
@@ -148,6 +150,7 @@
             right: 18px;
             gap: 10px;
             background: url(../images/i-mobile-next.svg) no-repeat center, #EBEBEB;
+            cursor: pointer;
 
             @include media("min", "xs") {
                 display: none;
@@ -173,4 +176,6 @@
             }
         }
     }
+
+ 
 }

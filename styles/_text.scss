@@ -14,12 +14,19 @@
     }
 
   
-
+    @include media("max", "sm") {
+        font-size: 12px;
+        line-height: 18px;
+        max-width: 350px;
+    }
+    
     @include media("max", "xs") {
         font-size: 12px;
         line-height: 18px;
         max-width: 284px;
     }
+
+  
 
     &_theme_dark {
         color: $text_them_dark;

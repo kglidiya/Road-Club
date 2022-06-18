@@ -51,13 +51,15 @@ const button = document.querySelector(".introduction__button");
 button.addEventListener("click", changeBtnColor);
 
 function changeBtnColor() {
-    button.classList.toggle("introduction__button_animation");
+    button.classList.add("introduction__button_animation");
     setTimeout(function () {
+        button.classList.remove("introduction__button_animation");
         bikes.scrollIntoView({
             behavior: "smooth",
             block: "start",
         });
     }, 500);
+
 }
 
 
@@ -115,6 +117,7 @@ const mediaQuery = window.matchMedia("(max-width: 576px)");
 
 let move;
 let widthCurrent;
+
 function adjustWidth() {
     allItems.forEach(function (item) {
         item.style.width = `${sliderTrack.clientWidth / slidesToShow}px`;
@@ -196,26 +199,31 @@ function slideBackMobile() {
 
 const checkBtn = function () {
     widthCurrent = `${sliderTrack.clientWidth / slidesToShow + 40}`;
-    
+    console.log( -sliderTrackMobile.clientWidth * 3)
+    console.log(sliderPosition)
 
     if (sliderPosition === 0) {
         sliderButtonPrev.disabled = true;
         sliderButtonPrevMobile.disabled = true;
-    } else if (sliderPosition < 0) {
-        sliderButtonPrev.disabled = false;
-        sliderButtonPrevMobile.disabled = false;
-    }
+        sliderButtonNext.disabled = false;
+        sliderButtonNextMobile.disabled = false;
+    } 
+
     if (sliderPosition === -widthCurrent * 4) {
         sliderButtonNext.disabled = true;
+      
+    }
 
-    if (sliderPosition === -widthCurrent) {
+    if (sliderPosition === -(sliderTrackMobile.clientWidth * 3 + 472)) {
         sliderButtonNextMobile.disabled = true;
     }
 
-    } else {
-        sliderButtonNext.disabled = false;
-        sliderButtonNextMobile.disabled = false;
+    else if (sliderPosition < 0) {
+        sliderButtonPrev.disabled = false;
+        sliderButtonPrevMobile.disabled = false;
     }
+ 
+
 };
 
 checkBtn();
@@ -287,22 +295,16 @@ inputBtn.addEventListener("click", hideBtn);
 
 const bikesContainer = document.querySelector(".bikes__card-container");
 const card = document.querySelector(".card");
+const mediaQueryMobile = window.matchMedia("(max-width: 414px)");
+const mediaQuerySmall = window.matchMedia("(max-width: 576px)");
 
-//document.addEventListener("DOMContentLoaded", changeSize);
-window.addEventListener("resize", changeSize);
-function changeSize() {
-    bikesContainer.style.height = `${card.clientHeight}px`;
-    console.log(card.clientHeight);
-}
 
-//changeSize();
 //select
 
 const select = document.querySelector(".bikes__select");
 const options = document.querySelectorAll(".bikes__select_option");
 const dots = document.querySelectorAll(".card__dot");
-const mediaQueryMobile = window.matchMedia("(max-width: 320px)");
-const mediaQuerySmall = window.matchMedia("(max-width: 576px)");
+
 
 select.addEventListener("change", filterCards);
 
@@ -339,6 +341,8 @@ let threShold;
 
 bikesContainer.addEventListener("touchstart", handleTouchStart);
 bikesContainer.addEventListener("touchmove", handleTouchMove);
+bikesContainer.addEventListener("dragstart", dragstart);
+bikesContainer.addEventListener("dragend", dragsend);
 
 
 function handleTouchStart(evt) {
@@ -350,9 +354,19 @@ function handleTouchStart(evt) {
 }
 
 
-function handleTouchMove(evt) {
+function dragstart(evt) {
+
     if (mediaQueryMobile.matches || mediaQuerySmall.matches) {
-        posX2 = evt.touches[0].clientX;
+        posX1 = evt.offsetX;
+    }
+
+}
+
+
+function dragsend(evt) {
+
+    if (mediaQueryMobile.matches || mediaQuerySmall.matches) {
+        posX2 = evt.offsetX;
         posDelta = posX1 - posX2;
 
         cardsActiveHighway.forEach(function (card) {
@@ -361,7 +375,7 @@ function handleTouchMove(evt) {
                     posDelta > 30 &&
                     evt.target === cardsActiveHighway[0].childNodes[1].childNodes[1]
                 ) {
-                    card.style.transform = `translateY(-${card.clientHeight + 100}px)`;
+                    card.style.transform = `translateX(-${card.clientWidth + 30}px)`;
                     dots[0].classList.remove('card__dot_active');
                     dots[1].classList.add('card__dot_active');
                     dots[2].classList.remove('card__dot_active');
@@ -370,7 +384,7 @@ function handleTouchMove(evt) {
                     posDelta > 30 &&
                     evt.target === cardsActiveHighway[1].childNodes[1].childNodes[1]
                 ) {
-                    card.style.transform = `translateY(-${card.clientHeight * 2 + 200}px)`;
+                    card.style.transform = `translateX(-${card.clientWidth * 2 + 60}px)`;
                     dots[0].classList.remove('card__dot_active');
                     dots[1].classList.remove('card__dot_active');
                     dots[2].classList.add('card__dot_active');
@@ -378,7 +392,7 @@ function handleTouchMove(evt) {
 
                 if (posDelta <= -30 &&
                     evt.target === cardsActiveHighway[2].childNodes[1].childNodes[1]) {
-                    card.style.transform = `translateY(-${card.clientHeight + 100}px)`;
+                    card.style.transform = `translateX(-${card.clientWidth + 30}px)`;
                     dots[0].classList.remove('card__dot_active');
                     dots[1].classList.add('card__dot_active');
                     dots[2].classList.remove('card__dot_active');
@@ -386,7 +400,7 @@ function handleTouchMove(evt) {
 
                 if (posDelta <= -30 &&
                     evt.target === cardsActiveHighway[1].childNodes[1].childNodes[1]) {
-                    card.style.transform = `translateY(-${card.clientHeight * 2 + 200}px)`;
+                    card.style.transform = `translateX(0px)`;
                     dots[0].classList.add('card__dot_active');
                     dots[1].classList.remove('card__dot_active');
                     dots[2].classList.remove('card__dot_active');
@@ -396,13 +410,16 @@ function handleTouchMove(evt) {
         });
 
 
+
+
+
         cardsActiveGravel.forEach(function (card) {
             dots.forEach(function () {
                 if (
                     posDelta > 30 &&
                     evt.target === cardsActiveGravel[0].childNodes[1].childNodes[1]
                 ) {
-                    card.style.transform = `translateY(-${card.clientHeight + 100}px)`;
+                    card.style.transform = `translateX(-${card.clientWidth + 30}px)`;
                     dots[0].classList.remove('card__dot_active');
                     dots[1].classList.add('card__dot_active');
                     dots[2].classList.remove('card__dot_active');
@@ -411,7 +428,7 @@ function handleTouchMove(evt) {
                     posDelta > 30 &&
                     evt.target === cardsActiveGravel[1].childNodes[1].childNodes[1]
                 ) {
-                    card.style.transform = `translateY(-${card.clientHeight * 2 + 200}px)`;
+                    card.style.transform = `translateX(-${card.clientWidth * 2 + 60}px)`;
                     dots[0].classList.remove('card__dot_active');
                     dots[1].classList.remove('card__dot_active');
                     dots[2].classList.add('card__dot_active');
@@ -419,7 +436,7 @@ function handleTouchMove(evt) {
 
                 if (posDelta <= -30 &&
                     evt.target === cardsActiveGravel[2].childNodes[1].childNodes[1]) {
-                    card.style.transform = `translateY(-${card.clientHeight + 100}px)`;
+                    card.style.transform = `translateX(-${card.clientWidth + 30}px)`;
                     dots[0].classList.remove('card__dot_active');
                     dots[1].classList.add('card__dot_active');
                     dots[2].classList.remove('card__dot_active');
@@ -427,7 +444,7 @@ function handleTouchMove(evt) {
 
                 if (posDelta <= -30 &&
                     evt.target === cardsActiveGravel[1].childNodes[1].childNodes[1]) {
-                    card.style.transform = `translateY(-${card.clientHeight * 2 + 200}px)`;
+                    card.style.transform = `translateX(0px)`;
                     dots[0].classList.add('card__dot_active');
                     dots[1].classList.remove('card__dot_active');
                     dots[2].classList.remove('card__dot_active');
@@ -444,7 +461,7 @@ function handleTouchMove(evt) {
                     posDelta > 30 &&
                     evt.target === cardsActiveTt[0].childNodes[1].childNodes[1]
                 ) {
-                    card.style.transform = `translateY(-${card.clientHeight + 100}px)`;
+                    card.style.transform = `translateX(-${card.clientWidth + 30}px)`;
                     dots[0].classList.remove('card__dot_active');
                     dots[1].classList.add('card__dot_active');
                     dots[2].classList.remove('card__dot_active');
@@ -453,7 +470,7 @@ function handleTouchMove(evt) {
                     posDelta > 30 &&
                     evt.target === cardsActiveTt[1].childNodes[1].childNodes[1]
                 ) {
-                    card.style.transform = `translateY(-${card.clientHeight * 2 + 200}px)`;
+                    card.style.transform = `translateX(-${card.clientWidth * 2 + 60}px)`;
                     dots[0].classList.remove('card__dot_active');
                     dots[1].classList.remove('card__dot_active');
                     dots[2].classList.add('card__dot_active');
@@ -461,7 +478,7 @@ function handleTouchMove(evt) {
 
                 if (posDelta <= -30 &&
                     evt.target === cardsActiveTt[2].childNodes[1].childNodes[1]) {
-                    card.style.transform = `translateY(-${card.clientHeight + 100}px)`;
+                    card.style.transform = `translateX(-${card.clientWidth + 30}px)`;
                     dots[0].classList.remove('card__dot_active');
                     dots[1].classList.add('card__dot_active');
                     dots[2].classList.remove('card__dot_active');
@@ -469,7 +486,140 @@ function handleTouchMove(evt) {
 
                 if (posDelta <= -30 &&
                     evt.target === cardsActiveTt[1].childNodes[1].childNodes[1]) {
-                    card.style.transform = `translateY(-${card.clientHeight * 2 + 200}px)`;
+                    card.style.transform = `translateX(0px)`;
+                    dots[0].classList.add('card__dot_active');
+                    dots[1].classList.remove('card__dot_active');
+                    dots[2].classList.remove('card__dot_active');
+
+                }
+            })
+        });
+    } else if (!mediaQueryMobile.matches || !mediaQuerySmall.matches) {
+        return false;
+    }
+}
+
+
+function handleTouchMove(evt) {
+    if (mediaQueryMobile.matches || mediaQuerySmall.matches) {
+        posX2 = evt.touches[0].clientX;
+        posDelta = posX1 - posX2;
+
+        cardsActiveHighway.forEach(function (card) {
+            dots.forEach(function () {
+                if (
+                    posDelta > 30 &&
+                    evt.target === cardsActiveHighway[0].childNodes[1].childNodes[1]
+                ) {
+                    card.style.transform = `translateX(-${card.clientWidth + 30}px)`;
+                    dots[0].classList.remove('card__dot_active');
+                    dots[1].classList.add('card__dot_active');
+                    dots[2].classList.remove('card__dot_active');
+                }
+                if (
+                    posDelta > 30 &&
+                    evt.target === cardsActiveHighway[1].childNodes[1].childNodes[1]
+                ) {
+                    card.style.transform = `translateX(-${card.clientWidth * 2 + 60}px)`;
+                    dots[0].classList.remove('card__dot_active');
+                    dots[1].classList.remove('card__dot_active');
+                    dots[2].classList.add('card__dot_active');
+                }
+
+                if (posDelta <= -30 &&
+                    evt.target === cardsActiveHighway[2].childNodes[1].childNodes[1]) {
+                    card.style.transform = `translateX(-${card.clientWidth + 30}px)`;
+                    dots[0].classList.remove('card__dot_active');
+                    dots[1].classList.add('card__dot_active');
+                    dots[2].classList.remove('card__dot_active');
+                }
+
+                if (posDelta <= -30 &&
+                    evt.target === cardsActiveHighway[1].childNodes[1].childNodes[1]) {
+                    card.style.transform = `translateX(0px)`;
+                    dots[0].classList.add('card__dot_active');
+                    dots[1].classList.remove('card__dot_active');
+                    dots[2].classList.remove('card__dot_active');
+
+                }
+            })
+        });
+
+
+        cardsActiveGravel.forEach(function (card) {
+            dots.forEach(function () {
+                if (
+                    posDelta > 30 &&
+                    evt.target === cardsActiveGravel[0].childNodes[1].childNodes[1]
+                ) {
+                    card.style.transform = `translateX(-${card.clientWidth + 30}px)`;
+                    dots[0].classList.remove('card__dot_active');
+                    dots[1].classList.add('card__dot_active');
+                    dots[2].classList.remove('card__dot_active');
+                }
+                if (
+                    posDelta > 30 &&
+                    evt.target === cardsActiveGravel[1].childNodes[1].childNodes[1]
+                ) {
+                    card.style.transform = `translateX(-${card.clientWidth * 2 + 60}px)`;
+                    dots[0].classList.remove('card__dot_active');
+                    dots[1].classList.remove('card__dot_active');
+                    dots[2].classList.add('card__dot_active');
+                }
+
+                if (posDelta <= -30 &&
+                    evt.target === cardsActiveGravel[2].childNodes[1].childNodes[1]) {
+                    card.style.transform = `translateX(-${card.clientWidth + 30}px)`;
+                    dots[0].classList.remove('card__dot_active');
+                    dots[1].classList.add('card__dot_active');
+                    dots[2].classList.remove('card__dot_active');
+                }
+
+                if (posDelta <= -30 &&
+                    evt.target === cardsActiveGravel[1].childNodes[1].childNodes[1]) {
+                    card.style.transform = `translateX(0px)`;
+                    dots[0].classList.add('card__dot_active');
+                    dots[1].classList.remove('card__dot_active');
+                    dots[2].classList.remove('card__dot_active');
+
+                }
+            })
+        });
+
+
+
+        cardsActiveTt.forEach(function (card) {
+            dots.forEach(function () {
+                if (
+                    posDelta > 30 &&
+                    evt.target === cardsActiveTt[0].childNodes[1].childNodes[1]
+                ) {
+                    card.style.transform = `translateX(-${card.clientWidth + 30}px)`;
+                    dots[0].classList.remove('card__dot_active');
+                    dots[1].classList.add('card__dot_active');
+                    dots[2].classList.remove('card__dot_active');
+                }
+                if (
+                    posDelta > 30 &&
+                    evt.target === cardsActiveTt[1].childNodes[1].childNodes[1]
+                ) {
+                    card.style.transform = `translateX(-${card.clientWidth * 2 + 60}px)`;
+                    dots[0].classList.remove('card__dot_active');
+                    dots[1].classList.remove('card__dot_active');
+                    dots[2].classList.add('card__dot_active');
+                }
+
+                if (posDelta <= -30 &&
+                    evt.target === cardsActiveTt[2].childNodes[1].childNodes[1]) {
+                    card.style.transform = `translateX(-${card.clientWidth + 30}px)`;
+                    dots[0].classList.remove('card__dot_active');
+                    dots[1].classList.add('card__dot_active');
+                    dots[2].classList.remove('card__dot_active');
+                }
+
+                if (posDelta <= -30 &&
+                    evt.target === cardsActiveTt[1].childNodes[1].childNodes[1]) {
+                    card.style.transform = `translateX(0px)`;
                     dots[0].classList.add('card__dot_active');
                     dots[1].classList.remove('card__dot_active');
                     dots[2].classList.remove('card__dot_active');
@@ -478,8 +628,8 @@ function handleTouchMove(evt) {
             })
         });
     }
-
 }
+
 
 
 //Theme dark
@@ -494,17 +644,17 @@ const page = document.querySelector(".page");
 const footer = document.querySelector(".footer");
 const titles = document.querySelectorAll(".title");
 const texts = document.querySelectorAll(".text");
-const linksHeader = document.querySelectorAll(".header__links_item");
+const linksHeader = document.querySelectorAll(".header__links-item");
 const linkIntro = document.querySelector(".introduction__link");
 const imagesIntro = document.querySelectorAll(".introduction__image");
-const titleMoto = document.querySelector(".motto__text_quote");
-const authorMoto = document.querySelector(".motto__text_author");
+const titleMoto = document.querySelector(".motto__quote");
+const authorMoto = document.querySelector(".motto__author");
 const filterLinks = document.querySelectorAll(".bikes__header_radio");
 const cards = document.querySelectorAll(".card__image-container");
 const cardLinks = document.querySelectorAll(".card__link");
 const links = document.querySelectorAll(".link");
 const footerTitle = document.querySelector(".footer__title");
-const popupLinksAll = document.querySelectorAll(".popup__links_item");
+const popupLinksAll = document.querySelectorAll(".popup__links-item");
 const switcherMobile = document.querySelector(".footer__switch-icon_mobile");
 
 
@@ -522,7 +672,7 @@ function switchThemeDark() {
     popup.classList.toggle("popup_opened_theme_dark");
     popupOpenBtn.classList.toggle("header__button_theme_dark");
     popupLinksAll.forEach(function (link) {
-        link.classList.toggle("popup__links_item_theme_dark");
+        link.classList.toggle("popup__links-item_theme_dark");
     });
     popupCloseBtn.classList.toggle("popup__button_theme_dark");
     page.classList.toggle("page_theme_dark");
@@ -534,7 +684,7 @@ function switchThemeDark() {
         text.classList.toggle("text_theme_dark");
     });
     linksHeader.forEach(function (link) {
-        link.classList.toggle("header__links_item_theme_dark");
+        link.classList.toggle("header__links-item_theme_dark");
     });
     linkIntro.classList.toggle("introduction__link_theme_dark");
     imagesIntro.forEach(function (image) {

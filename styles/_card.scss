@@ -6,10 +6,13 @@
   @include media("max", "xs") {
     height: inherit;
     background: #F4F4F4;
-    box-shadow: -20px 60px 220px 0 rgba(0, 0, 0, 0.06);
     border-radius: 20px;
   }
 
+  @include media("max", "sm") {
+    width: 90vw;
+    height: inherit;
+  }
 
   &__image-container {
     padding: 20px 20px 20px 20px;
@@ -19,16 +22,17 @@
     box-shadow: -20px 60px 220px 0 rgba(0, 0, 0, 0.06);
 
     @include media("max", "sm") {
-      width: 100%;
+      width: 80%;
       height: auto;
+      padding: 20px 5px 20px 20px;
     }
 
     @include media("max", "xs") {
-      width: 83%;
+      width: 86%;
       height: auto;
       box-shadow: 0 0 0 0 #C4C4C4;
       margin-bottom: 0;
-      padding-bottom: 15px;
+      padding-bottom: 0;
 
     }
 
@@ -56,6 +60,8 @@
       font-size: 14px;
       line-height: 18px;
       text-align: center;
+      margin-bottom: 16px;
+      padding-left: 0;
     }
 
 
