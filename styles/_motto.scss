@@ -53,42 +53,45 @@
 
     }
 
-    &_quote {
-      font-weight: 600;
-      font-size: 34px;
-      line-height: 44px;
-      color: $titles;
-      margin-top: 0;
-      padding-top: 0;
+    
+  }
 
-      @include media("max", "xs") {
-        font-size: 23px;
-        line-height: 29px;
-        margin-bottom: 0;
-      }
-    }
+  &__quote {
+    font-weight: 600;
+    font-size: 34px;
+    line-height: 44px;
+    color: $titles;
+    margin-top: 0;
+    padding-top: 0;
 
-    &_author {
-      font-weight: bold;
-      font-size: 20px;
-      line-height: 32px;
-      color: $titles;
-      margin-top: 226px;
-      margin-bottom: 2px;
-
-      @include media("max", "lg") {
-
-        margin-top: 60px;
-
-      }
-
-      @include media("max", "xs") {
-        font-size: 14px;
-        line-height: 22px;
-        margin-top: 40px;
-
-      }
-
+    @include media("max", "xs") {
+      font-size: 23px;
+      line-height: 29px;
+      margin-bottom: 0;
     }
   }
+
+  &__author {
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 32px;
+    color: $titles;
+    margin-top: 226px;
+    margin-bottom: 2px;
+
+    @include media("max", "lg") {
+
+      margin-top: 60px;
+
+    }
+
+    @include media("max", "xs") {
+      font-size: 14px;
+      line-height: 22px;
+      margin-top: 40px;
+
+    }
+
+  }
+  
 }

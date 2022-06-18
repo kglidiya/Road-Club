@@ -20,6 +20,11 @@
              padding: 50px 40px 50px 40px;
          }
 
+         @include media("max", "md") {
+             justify-content: center;
+         }
+
+
          @include media("max", "sm") {
              padding: 50px 40px 50px 40px;
 
@@ -40,11 +45,13 @@
              padding-top: 62px;
 
              @include media("max", "lg") {
-                 max-width: 350px;
+                 width: 40%;
+                 align-items: center;
              }
 
-             @include media("max", "xs") {
+             @include media("max", "md") {
                  padding-top: 0;
+                 width: 100%;
 
              }
          }
@@ -62,7 +69,8 @@
              margin-top: 52px;
              margin-bottom: 168px;
              font-weight: 400;
-    
+             cursor: pointer;
+
 
 
              @include media("max", "xs") {
@@ -72,7 +80,7 @@
                  height: 48px;
              }
 
-          
+
              &_animation {
                  animation: changeColor .5s linear;
              }
@@ -123,20 +131,27 @@
 
          &__image {
             width: 100%;
-            height: auto;
-            box-shadow: -20px 60px 220px 0 #C4C4C4;
+             height: auto;
+             box-shadow: -20px 60px 220px 0 #C4C4C4;
+
+             @include media("max", "md") {
+                 max-height: 400px;
+
+             }
+
+             @include media("max", "xs") {
+                 max-height: 348px;
+                 margin-left: 30px;
+
+             }
+
+             &_theme_dark {
+                 box-shadow: 0 0 0 0 #C4C4C4;
+             }
 
 
+         }
 
-            &_theme_dark {
-               box-shadow: 0 0 0 0 #C4C4C4;
-
-               
-           }
-
-        
-        }
-        
          &__image-container {
              width: 46.2%;
              display: flex;
@@ -150,38 +165,35 @@
                  height: 254px;
                  width: 100%;
              }
-     
+
          }
-        
+
 
 
          &__image-container_mobile {
              display: flex;
              align-items: center;
-             margin-left: 30px;
              padding-bottom: 40px;
+             justify-content: end;
+
 
              @include media("max", "md") {
-                width: 120%;
-                height: auto;
-            }
+                 height: auto;
+             }
 
              @include media("min", "md") {
                  display: none;
              }
 
              @include media("max", "xs") {
-                width: 254px;
-             height: 348px;
-             
+                 width: 100%;
+             }
 
-            }
 
-           
 
          }
 
-        
+
 
          &__sticky-container {
              height: 430px;
@@ -196,9 +208,16 @@
                  display: none;
              }
 
-             @include media("max", "xl") {
-                 left: 350px;
+
+             @media(max-width: 1350px) {
+                 right: 280px;
                  bottom: 79px;
+
+             }
+
+             @include media("max", "xl") {
+                 right: 150px;
+                 bottom: 0;
 
              }
 
@@ -223,17 +242,17 @@
              }
 
              @include media("max", "md") {
-                left: 20px;
-                bottom: 700px;
-                height: 300px;
-            }
+                 left: 20px;
+                 bottom: 500px;
+                 height: 300px;
+             }
 
-            @include media("max", "xs") {
-                left: 3px;
-                bottom: 330px;
-                height: 150px;
+             @include media("max", "xs") {
+                 left: 3px;
+                 bottom: 325px;
+                 height: 150px;
 
-            }
+             }
 
          }
 
@@ -247,10 +266,11 @@
              justify-content: center;
              border-radius: 20px;
              top: 0;
+             box-shadow: -20px -40px 220px -80px #c4c4;
 
 
              @include media("max", "xl") {
-                 width: 380px;
+                 width: 340px;
                  height: auto;
              }
 
@@ -277,7 +297,7 @@
                  display: none;
              }
 
-           
+
 
          }
 
@@ -291,7 +311,7 @@
                  height: auto;
              }
 
-           
+
 
              @include media("max", "xs") {
                  height: 138px;
