@@ -9,5 +9,5 @@
 -	Sass
 -	JavaScript
 
-## Ссылка на проект на GitHub Pages: <a href=" https://kglidiya.github.io/Road-Club/"> Road-Club </a>
+## Ссылка на проект на GitHub Pages: <a href="https://kglidiya.github.io/Road-Club/"> Road-Club </a>
 
